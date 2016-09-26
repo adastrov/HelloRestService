@@ -1,5 +1,7 @@
 # Hello rest service
 
+[![Build Status](https://circleci.com/gh/palagen/HelloRestService/tree/master.png?circle-token=:circle-token)](https://circleci.com/gh/palagen/HelloRestService)
+
 Есть таблица contacts в SQL базе. В ней миллионы строк.
 Поле
 Тип

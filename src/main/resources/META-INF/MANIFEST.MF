@@ -1,2 +1,0 @@
-Manifest-Version: 1.0-SNAPSHOT
-Main-Class: hello_rest_service.palagen.com.github.application.HelloRestService

@@ -51,7 +51,7 @@ public class RestServiceTest extends MainControllerTest {
     public void testGetContactsByRegExContain() {
 
         List<Contact> contactList = contactDao.getContactsByRegEx("A.$");
-        Assert.assertFalse(contactList.contains("Alexandra"));
+        Assert.assertTrue(contactList.contains("Alexandra"));
 
     }
 

@@ -4,6 +4,9 @@ import hello_rest_service.palagen.com.github.dao.ContactDao;
 import hello_rest_service.palagen.com.github.dao.ContactDaoImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +20,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan("hello_rest_service.palagen.com")
+@EnableCaching
 @EnableTransactionManagement
 public class HelloRestServiceConfig {
 
@@ -57,6 +61,11 @@ public class HelloRestServiceConfig {
     @Bean(name = "contactDao")
     public ContactDao getContactDao(SessionFactory sessionFactory) {
         return new ContactDaoImpl(sessionFactory);
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("contacts");
     }
 
 }

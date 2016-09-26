@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,7 @@ public class ContactDaoImpl implements ContactDao{
 
     @Override
     @Transactional
+    @Cacheable("contacts")
     public List<Contact> findAll() {
         return sessionFactory.getCurrentSession()
                 .createQuery("select c from Contact c").list();
@@ -37,6 +39,7 @@ public class ContactDaoImpl implements ContactDao{
 
     @Override
     @Transactional
+    @Cacheable("contacts")
     public List<Contact> getContactsBySqlRestriction(String range) {
 
         List<Contact> contactList =
@@ -49,6 +52,7 @@ public class ContactDaoImpl implements ContactDao{
 
     @Override
     @Transactional
+    @Cacheable("contacts")
     public List<Contact> getContactsByRegEx(String range) {
 
         String sql = "select c from Contact c";

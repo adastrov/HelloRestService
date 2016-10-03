@@ -31,7 +31,7 @@ public class Transformer {
         List contactList = new ArrayList(
                 contactDTOList.size());
         for (ContactDTO contactDTO : contactDTOList) {
-            contactList.add(mapper.map(contactDTO, ContactDTO.class));
+            contactList.add(mapper.map(contactDTO, Contact.class));
         }
 
         return contactList;

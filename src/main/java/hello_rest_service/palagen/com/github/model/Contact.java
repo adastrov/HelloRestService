@@ -1,12 +1,9 @@
 package hello_rest_service.palagen.com.github.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
 @Table(name = "myTestDB.tbl_contacts")
 @Cacheable
 public class Contact implements Serializable {
@@ -26,11 +23,11 @@ public class Contact implements Serializable {
     }
 
     @Column(name = "contact_name", nullable = false)
-    public String getContactName() {
+    public String getName() {
         return name;
     }
 
-    public void setContactName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

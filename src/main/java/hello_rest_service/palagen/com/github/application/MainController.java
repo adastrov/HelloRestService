@@ -33,7 +33,7 @@ public class MainController {
     private ContactServiceImpl contactService;
 
     @RequestMapping(value = "/hello/contacts", method = RequestMethod.GET)
-    public Map<String, List<ContactDTO>> getByRegEx(IncomeData incomeData) throws Exception{
+    public ResponseEntity<Map<String, List<ContactDTO>>> getByRegEx(IncomeData incomeData) throws Exception{
 
         List<ContactDTO> contactList;
         Map<String, List<ContactDTO>> responseMap = new HashMap<>(1);
@@ -53,9 +53,9 @@ public class MainController {
             throw new ContactNotFoundException("Contacts not found");
         }
 
-        responseMap.put("contacts:", contactList);
+        responseMap.put("contacts", contactList);
 
-        return responseMap;
+        return new ResponseEntity<>(responseMap, HttpStatus.OK);
 
     }
 
@@ -65,7 +65,7 @@ public class MainController {
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.getErrors().add("ISS_E: "+e.toString()+" "+e.getMessage());
 
-        return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(errorMessage, HttpStatus.NO_CONTENT);
 
     }
 
@@ -79,7 +79,7 @@ public class MainController {
         LOGGER.error("Invalid regex: " + request.getPathInfo());
         LOGGER.error("REST Error handler="+ex.getMessage());
 
-        return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
 
     }
 
@@ -92,7 +92,7 @@ public class MainController {
         LOGGER.info("Requested URL="+request.getRequestURL());
         LOGGER.error("REST Error handler="+ex.getMessage());
 
-        return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
 
     }
 

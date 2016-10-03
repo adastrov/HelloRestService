@@ -42,7 +42,7 @@ public class ContactServiceImpl implements ContactService{
     private List<ContactDTO> filterListByRegExp(List<ContactDTO> list, String regex) {
 
         return list.stream().filter(s ->
-                !s.getContactName().matches(regex)).collect(Collectors.toList());
+                !s.getName().matches(regex)).collect(Collectors.toList());
 
     }
 

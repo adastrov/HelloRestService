@@ -2,7 +2,6 @@ package hello_rest_service.palagen.com.github.config;
 
 import hello_rest_service.palagen.com.github.dao.ContactDao;
 import hello_rest_service.palagen.com.github.dao.ContactDaoImpl;
-import hello_rest_service.palagen.com.github.service.ContactServiceImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

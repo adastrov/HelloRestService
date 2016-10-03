@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 @Repository
@@ -32,14 +31,17 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
-    public List<Contact> findAll() {
+    public List<ContactDTO> findAll() {
 
         List<Contact> contactList = contactDao.findAll();
-        return contactList;
+
+        List<ContactDTO> contactsDTOList = Transformer.transformContactListToContactDTOList(contactList);
+
+        return contactsDTOList;
 
     }
 
-    private List<ContactDTO> filterListByRegExp(List<ContactDTO> list, String regex) throws PatternSyntaxException {
+    private List<ContactDTO> filterListByRegExp(List<ContactDTO> list, String regex) {
 
         return list.stream().filter(s ->
                 !s.getContactName().matches(regex)).collect(Collectors.toList());

@@ -8,6 +8,6 @@ import java.util.List;
 public interface ContactService {
 
     List<ContactDTO> findContactsByRegExp(String range);
-    List<Contact> findAll();
+    List<ContactDTO> findAll();
 
 }

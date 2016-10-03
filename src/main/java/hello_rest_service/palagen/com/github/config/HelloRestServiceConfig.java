@@ -2,8 +2,8 @@ package hello_rest_service.palagen.com.github.config;
 
 import hello_rest_service.palagen.com.github.dao.ContactDao;
 import hello_rest_service.palagen.com.github.dao.ContactDaoImpl;
+import hello_rest_service.palagen.com.github.service.ContactServiceImpl;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
@@ -24,7 +24,6 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class HelloRestServiceConfig {
 
-    @Autowired
     @Bean(name = "sessionFactory")
     public SessionFactory getSessionFactory(DataSource dataSource) {
 
@@ -47,7 +46,6 @@ public class HelloRestServiceConfig {
 
     }
 
-    @Autowired
     @Bean(name = "transactionManager")
     public HibernateTransactionManager getTransactionManager(
             SessionFactory sessionFactory) {
@@ -57,10 +55,14 @@ public class HelloRestServiceConfig {
         return transactionManager;
     }
 
-    @Autowired
     @Bean(name = "contactDao")
     public ContactDao getContactDao(SessionFactory sessionFactory) {
         return new ContactDaoImpl(sessionFactory);
+    }
+
+    @Bean(name = "contactService")
+    public ContactServiceImpl getContactService(SessionFactory sessionFactory) {
+        return new ContactServiceImpl(sessionFactory);
     }
 
     @Bean

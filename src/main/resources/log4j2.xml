@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" name="Log4j2" packages="">
+    <Properties>
+        <Property name="filename">./logs/rest_service.log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STDOUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <File name="File" fileName="${filename}">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="MainControllerLogger" level="Info" additivity="false">
+            <AppenderRef ref="File" />
+        </Logger>
+        <Root level="Info">
+            <AppenderRef ref="STDOUT" />
+        </Root>
+    </Loggers>
+</Configuration>

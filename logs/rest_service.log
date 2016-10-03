@@ -1,0 +1,9 @@
+04:09:19.867 [http-nio-8080-exec-2] INFO  MainControllerLogger - Requested URL=http://localhost:8080/hello/contacts
+04:09:19.867 [http-nio-8080-exec-2] ERROR MainControllerLogger - Invalid regex: null
+04:09:19.867 [http-nio-8080-exec-2] ERROR MainControllerLogger - REST Error handler=ISS_E: Invalid parameter, expected: nameFilter
+04:14:46.333 [http-nio-8080-exec-1] INFO  MainControllerLogger - Requested URL=http://localhost:8080/hello/contacts
+04:14:46.334 [http-nio-8080-exec-1] ERROR MainControllerLogger - REST Error handler=ISS_E: Invalid parameter, expected: nameFilter
+04:18:36.352 [http-nio-8080-exec-1] INFO  MainControllerLogger - Requested URL=http://localhost:8080/hello/contacts
+04:18:36.353 [http-nio-8080-exec-1] ERROR MainControllerLogger - REST Error handler=ISS_E: Invalid parameter! Expected: nameFilter
+04:27:36.478 [http-nio-8080-exec-1] INFO  MainControllerLogger - Requested URL=http://localhost:8080/hello/contacts
+04:27:36.479 [http-nio-8080-exec-1] ERROR MainControllerLogger - REST Error handler=ISS_E: Invalid parameter! Expected: nameFilter

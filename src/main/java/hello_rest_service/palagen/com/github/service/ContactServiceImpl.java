@@ -4,8 +4,6 @@ import hello_rest_service.palagen.com.github.dao.ContactDao;
 import hello_rest_service.palagen.com.github.dto.ContactDTO;
 import hello_rest_service.palagen.com.github.model.Contact;
 import hello_rest_service.palagen.com.github.util.Transformer;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.ejb.EJB;
@@ -19,16 +17,7 @@ public class ContactServiceImpl implements ContactService{
     @EJB
     private ContactDao contactDao;
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
     public ContactServiceImpl() {
-    }
-
-    public ContactServiceImpl(SessionFactory sessionFactory) {
-
-        this.sessionFactory = sessionFactory;
-
     }
 
     @Override
@@ -36,7 +25,7 @@ public class ContactServiceImpl implements ContactService{
 
         List<Contact> contactList = contactDao.findAll();
 
-        List<ContactDTO> contactsDTOList = Transformer.transformContactListToContactDTOlist(contactList);
+        List<ContactDTO> contactsDTOList = Transformer.transformContactListToContactDTOList(contactList);
 
         return filterListByRegExp(contactsDTOList, range);
 

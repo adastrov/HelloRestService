@@ -60,11 +60,6 @@ public class HelloRestServiceConfig {
         return new ContactDaoImpl(sessionFactory);
     }
 
-    @Bean(name = "contactService")
-    public ContactServiceImpl getContactService(SessionFactory sessionFactory) {
-        return new ContactServiceImpl(sessionFactory);
-    }
-
     @Bean
     public CacheManager cacheManager() {
         return new ConcurrentMapCacheManager("contacts");

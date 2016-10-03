@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Transformer {
 
-    public static List<ContactDTO> transformContactListToContactDTOlist(List<Contact> contactList) {
+    public static List<ContactDTO> transformContactListToContactDTOList(List<Contact> contactList) {
 
         Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
 

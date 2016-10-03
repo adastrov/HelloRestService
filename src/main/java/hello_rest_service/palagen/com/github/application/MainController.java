@@ -32,8 +32,6 @@ public class MainController {
     @Autowired
     private ContactServiceImpl contactService;
 
-
-
     @RequestMapping(value = "/hello/contacts", method = RequestMethod.GET)
     public Map<String, List<ContactDTO>> getByRegEx(IncomeData incomeData) throws Exception{
 

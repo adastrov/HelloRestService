@@ -35,9 +35,7 @@ public class ContactServiceImpl implements ContactService{
 
         List<Contact> contactList = contactDao.findAll();
 
-        List<ContactDTO> contactsDTOList = Transformer.transformContactListToContactDTOList(contactList);
-
-        return contactsDTOList;
+        return Transformer.transformContactListToContactDTOList(contactList);
 
     }
 

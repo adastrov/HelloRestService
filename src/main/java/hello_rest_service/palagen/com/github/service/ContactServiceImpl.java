@@ -4,9 +4,9 @@ import hello_rest_service.palagen.com.github.dao.ContactDao;
 import hello_rest_service.palagen.com.github.dto.ContactDTO;
 import hello_rest_service.palagen.com.github.model.Contact;
 import hello_rest_service.palagen.com.github.util.Transformer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.ejb.EJB;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Repository
 public class ContactServiceImpl implements ContactService{
 
-    @EJB
+    @Autowired
     private ContactDao contactDao;
 
     public ContactServiceImpl() {

@@ -1,7 +1,8 @@
 package hello_rest_service.palagen.com.github.application;
 
-import hello_rest_service.palagen.com.github.dao.ContactDao;
+import hello_rest_service.palagen.com.github.dto.ContactDTO;
 import hello_rest_service.palagen.com.github.model.Contact;
+import hello_rest_service.palagen.com.github.service.ContactServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +14,13 @@ import java.util.List;
 public class RestServiceTest extends MainControllerTest {
 
     @Autowired
-    private ContactDao contactDao;
+    private ContactServiceImpl contactService;
 
-    @Test
-    public void testContactListIsEmpty() {
-
-        List<Contact> contactList = contactDao.findAll();
-        Assert.assertFalse(contactList.isEmpty());
-
-    }
 
     @Test
     public void testGetContactsBySqlRestrictionNotContain() {
 
-        List<Contact> contactList = contactDao.getContactsBySqlRestriction("^A.$");
+        List<ContactDTO> contactList = contactService.findContactsByRegExp("^A.$");
         Assert.assertFalse(contactList.contains("Alexandra"));
 
     }
@@ -34,7 +28,7 @@ public class RestServiceTest extends MainControllerTest {
     @Test
     public void testGetContactsByRegExNotContain() {
 
-        List<Contact> contactList = contactDao.getContactsByRegEx("^A.$");
+        List<ContactDTO> contactList = contactService.findContactsByRegExp("^A.$");
         Assert.assertFalse(contactList.contains("Alexandra"));
 
     }
@@ -42,7 +36,7 @@ public class RestServiceTest extends MainControllerTest {
     @Test
     public void testGetContactsBySqlRestrictionContain() {
 
-        List<Contact> contactList = contactDao.getContactsBySqlRestriction("A.$");
+        List<ContactDTO> contactList = contactService.findContactsByRegExp("A.$");
         Assert.assertFalse(contactList.contains("Alexandra"));
 
     }
@@ -50,8 +44,8 @@ public class RestServiceTest extends MainControllerTest {
     @Test
     public void testGetContactsByRegExContain() {
 
-        List<Contact> contactList = contactDao.getContactsByRegEx("A.$");
-        Assert.assertFalse(contactList.contains("Alexandra"));
+        List<ContactDTO> contactList = contactService.findContactsByRegExp("^.*[aeio].*$");
+        Assert.assertFalse(contactList.contains("Dolf"));
 
     }
 

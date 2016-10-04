@@ -1,5 +1,7 @@
 package hello_rest_service.palagen.com.github.application;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import hello_rest_service.palagen.com.github.dto.ContactDTO;
 import hello_rest_service.palagen.com.github.exceptions.*;
 import hello_rest_service.palagen.com.github.model.IncomeData;
@@ -52,6 +54,11 @@ public class MainController {
         if (contactList.isEmpty()) {
             throw new ContactNotFoundException("Contacts not found");
         }
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
 
         responseMap.put("contacts", contactList);
 

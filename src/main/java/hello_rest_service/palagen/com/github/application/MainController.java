@@ -54,11 +54,6 @@ public class MainController {
             throw new ContactNotFoundException("Contacts not found");
         }
 
-        ObjectMapper mapper = new ObjectMapper();
-
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
-
         responseMap.put("contacts", contactList);
 
         return new ResponseEntity<>(responseMap, HttpStatus.OK);

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import hello_rest_service.palagen.com.github.dto.ContactDTO;
 import hello_rest_service.palagen.com.github.exceptions.*;
-import hello_rest_service.palagen.com.github.model.IncomeData;
 import hello_rest_service.palagen.com.github.service.ContactServiceImpl;
 
 import org.apache.logging.log4j.LogManager;
@@ -35,18 +34,18 @@ public class MainController {
     private ContactServiceImpl contactService;
 
     @RequestMapping(value = "/hello/contacts", method = RequestMethod.GET)
-    public ResponseEntity<Map<String, List<ContactDTO>>> getByRegEx(IncomeData incomeData) throws Exception{
+    public ResponseEntity<Map<String, List<ContactDTO>>> getByRegEx(@RequestParam(value = "nameFilter", defaultValue = "") final String nameFilter) throws Exception{
 
         List<ContactDTO> contactList;
         Map<String, List<ContactDTO>> responseMap = new HashMap<>(1);
 
-        if (incomeData.getNameFilter() == null || incomeData.getNameFilter().isEmpty()) {
+        if (nameFilter.isEmpty()) {
             throw new InvalidParameterException("ISS_E: Invalid parameter! Expected: nameFilter");
         }
 
         try {
-            Pattern.compile(incomeData.getNameFilter());
-            contactList = contactService.findContactsByRegExp(incomeData.getNameFilter());
+            Pattern.compile(nameFilter);
+            contactList = contactService.findContactsByRegExp(nameFilter);
         } catch (PatternSyntaxException e) {
             throw new BadRegExpException(e.getMessage());
         }
